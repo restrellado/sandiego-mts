@@ -1,0 +1,34 @@
+---
+title: "Exploring San Diego Mass Transit Data"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r download zip file}
+if (file.exists("google_transit") == FALSE) {
+  download.file(
+    "https://transitfeeds.com/link?u=http://www.sdmts.com/google_transit_files/google_transit.zip",
+    destfile = "google_transit.zip"
+    )
+  unzip("google_transit.zip", exdir = "google_transit")
+}
+```
+
+```{r}
+route <- read_csv("google_transit/routes.txt")
+```
+
+```{r}
+trip <- read_csv("google_transit/trips.txt")
+```
+
+```{r}
+cal <- read_csv("google_transit/calendar_dates.txt")
+```
+
+```{r}
+shape <- read_csv("google_transit/shapes.txt")
+```
